@@ -44,7 +44,7 @@
                             </div>
                             <div>
                                 <button type="submit" id="submit" class="submit-btn">Submit</button>
-                                <p class="action-left">3 try left</p>
+                                <p class="action-left"> <span id="case-count">3</span>try left</p>
                             </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
         
            var generateFigure = document.getElementById("generate-area").value;
        
-            if(inputFigure.value == generateFigure.value){ 
+            if(inputFigure == generateFigure){ 
                 document.getElementById("matched").style.display = "block";
                 
                 // const matchArea = document.getElementById("matched");
@@ -102,13 +102,13 @@
             } 
             else{
                 document.getElementById("not-matched").style.display = "block";
-                
+                 
                 // const notMatchArea = document.getElementById("not-matched");
                 // notMatchArea.style.display= "block";
             }
-       })
-
-        
+            
+        })
     </script>
+    
 </body>
 </html>
