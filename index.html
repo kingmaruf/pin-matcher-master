@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="generate-area" style="text-align: center;" class="form-control" type="text" value="">
+                    <button id="generate-btn" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width" name="display">
+                    <input id="input-area" class="form-control" name="textview" style="text-align: center;" type="text">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                              <div class="button" onclick="integrate('7')"> 7 </div>
+                              <div class="button" onclick="integrate('8')">8</div>
+                              <div class="button" onclick="integrate('9')">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" onclick="integrate('4')">4</div>
+                              <div class="button" onclick="integrate('5')">5</div>
+                              <div class="button" onclick="integrate('6')">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                              <div class="button" onclick="integrate('1')">1</div>
+                              <div class="button" onclick="integrate('2')">2</div>
+                              <div class="button" onclick="integrate('3')">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button" id="delete-one"><</div>
+                                <div class="button" onclick="integrate('0')">0</div>
+                                <div class="button" id="clean">C</div>
+                            </div>
+                            <div>
+                                <button type="submit" id="submit" class="submit-btn">Submit</button>
+                                <p class="action-left">3 try left</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p id="not-matched" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="matched" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+    </div>
+    <!--HTML Area End-->
+    <!-- JavaScript Area Start-->
+    <!-- Generate Button Area Start-->
+    <script>
+        document.getElementById('generate-btn').addEventListener('click', function(){
+            const generateNumber = document.getElementById('generate-area');
+            generateNumber.value = Math.random() * 10000;
+            generateNumber.value = Math.round(generateNumber.value);
+        }) 
+    </script>
+    <!-- Input Button Area Start-->
+    <script> 
+        function integrate (val){
+            document.getElementById("input-area").value += val; 
+        }
+    </script>
+    <!-- One Digit Button Area Start-->
+    <script>
+        const delOneBtn = document.getElementById("delete-one"); 
+        delOneBtn.addEventListener('click', function(){
+            const inputNumber = document.getElementById("input-area").value;
+            document.getElementById("input-area").value = inputNumber.substring(0, inputNumber.length-1);
+        }) 
+    </script>
+    <!-- All Clean Button Area Start-->
+    <script>
+        const allCleanBtn = document.getElementById("clean");
+        allCleanBtn.addEventListener('click', function(){
+            document.getElementById("input-area").value = '';
+        }) 
+    </script>
+    <!--Matching Part-->
+    <script> 
+       const submitBtn = document.getElementById("submit");
+       submitBtn.addEventListener('click', function(){
+           var inputFigure = document.getElementById("input-area").value;
+        
+           var generateFigure = document.getElementById("generate-area").value;
+       
+            if(inputFigure.value == generateFigure.value){ 
+                document.getElementById("matched").style.display = "block";
+                
+                // const matchArea = document.getElementById("matched");
+                // matchArea.style.display= "block"; 
+            } 
+            else{
+                document.getElementById("not-matched").style.display = "block";
+                
+                // const notMatchArea = document.getElementById("not-matched");
+                // notMatchArea.style.display= "block";
+            }
+       })
+
+        
+    </script>
+</body>
+</html>
